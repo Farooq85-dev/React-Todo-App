@@ -1,0 +1,75 @@
+$formBorderRadius: 15px;
+$formBg: #EFEEE5;
+$formPadding: 20px 40px;
+$formBoxShadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+$inputRadius: 10px;
+$inputPaadding: 10px 10px;
+$inputBoxShadow: none;
+$inputsFocusBorder: 1px solid #274546;
+$inputMargin: 5px;
+$iconsColor: #274546;
+$topIconsWidth: 200px;
+$topIconsHeight: 200px;
+$iconsBorderColor: #274546;
+$btnBg: #274546;
+$btnBgHover: #1e3435;
+$btnPadding: 10px 15px;
+$btnBorder: none;
+
+@mixin flexBoxStyling() {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin formStyling() {
+    border-radius: $formBorderRadius;
+    background-color: $formBg;
+    padding: $formPadding;
+    box-shadow: $formBoxShadow;
+}
+
+@mixin signupInputsStyling () {
+    border-radius: $inputRadius;
+    box-shadow: $inputBoxShadow;
+    padding: $inputPaadding;
+}
+
+@mixin signupBtnStyling() {
+    background-color: $btnBg;
+    border: none;
+}
+
+.MainFormDiv {
+    @include flexBoxStyling();
+    height: 100vh;
+    width: 100%;
+
+    .signupForm {
+        @include formStyling();
+
+        .signupTopIcon {
+            width: $topIconsWidth;
+            height: $topIconsHeight;
+            color: $iconsColor;
+        }
+
+        .signupInputs {
+            @include signupInputsStyling();
+
+            &:focus {
+                box-shadow: none;
+                border: $inputsFocusBorder;
+            }
+        }
+
+        .signupBtn {
+            @include signupBtnStyling();
+
+            &:hover {
+                background-color: $btnBgHover;
+            }
+        }
+    }
+}
