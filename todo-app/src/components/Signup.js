@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Button, InputGroup } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { AiFillCodeSandboxCircle, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { AiFillOpenAI , AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import './main.scss';
 
 function SignupForm() {
@@ -49,7 +49,7 @@ function SignupForm() {
         <div className='MainFormDiv'>
             <div className='signupForm'>
                 <Form noValidate validated={validated} onSubmit={handleSubmit}>
-                    <AiFillCodeSandboxCircle className='signupTopIcon' size={50} />
+                    <AiFillOpenAI  className='signupTopIcon' size={50} />
                     <Form.Group className="mb-4" style={{ width: "100%" }} controlId="formBasicName">
                         <Form.Control
                             type="text"
@@ -105,7 +105,7 @@ function SignupForm() {
                         Submit
                     </Button>
                 </Form>
-                    <button className='linkBtn' onClick={navigateToSignin}>Already have an account? Signin </button>
+                <button className='linkBtn' onClick={navigateToSignin}>Already have an account? Signin </button>
             </div>
         </div>
     );

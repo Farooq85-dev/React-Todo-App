@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { AiFillCodeSandboxCircle, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import './main.scss';
 
+
 function SignupForm() {
     const navigate = useNavigate();
 
@@ -41,6 +42,7 @@ function SignupForm() {
             const storedData = JSON.parse(localStorage.getItem("usersData"));
             if (storedData && storedData.userName === formData.userName && storedData.userPassword === formData.userPassword) {
                 alert('User authenticated successfully');
+                navigate('/todoApp');
             } else {
                 setError('Invalid username or password');
             }

@@ -17,6 +17,8 @@ $btnPadding: 5px 10px;
 $btnBorder: none;
 $btnBorderRadius: 10px;
 $btnTextColor: white;
+$tasksIconWidth: 30px;
+$tasksIconHeight: 30px;
 
 @mixin flexBoxStyling() {
     display: flex;
@@ -61,7 +63,8 @@ $btnTextColor: white;
             color: $iconsColor;
         }
 
-        .signupInputs {
+        .signupInputs,
+        .tasksInputs {
             @include signupInputsStyling();
 
             &:focus {
@@ -84,6 +87,38 @@ $btnTextColor: white;
             &:hover {
                 background-color: $btnBgHover;
             }
+        }
+    }
+}
+
+.navBar {
+    background-color: $btnBg;
+}
+
+.mainContainer {
+    @include flexBoxStyling();
+
+    .mainTodo {
+        @include flexBoxStyling();
+        @include formStyling();
+
+        .listRendering {
+            list-style-type: none;
+            margin-bottom: 10px;
+        }
+
+        .topInput {
+            margin-bottom: 10px;
+        }
+
+        .ul {
+            padding: 0px;
+        }
+
+        .tasksIcon {
+            width: $tasksIconWidth;
+            height: $tasksIconHeight;
+            cursor: grab;
         }
     }
 }
