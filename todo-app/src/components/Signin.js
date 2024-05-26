@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Button, InputGroup } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import { AiFillCodeSandboxCircle, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import './main.scss';
@@ -8,17 +8,16 @@ import './main.scss';
 function SignupForm() {
     const navigate = useNavigate();
 
-    const navigateToSignin = () => {
-        navigate('/signin');
+    const navigateToSignup = () => {
+        navigate('/signup');
     };
-
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [formData, setFormData] = useState({
         userName: '',
-        userEmail: '',
         userPassword: ''
     });
     const [validated, setValidated] = useState(false);
+    const [error, setError] = useState('');
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
@@ -39,8 +38,12 @@ function SignupForm() {
             e.stopPropagation();
         } else {
             e.preventDefault();
-            console.log('Form Data:', formData);
-            localStorage.setItem("usersData", JSON.stringify(formData));
+            const storedData = JSON.parse(localStorage.getItem("usersData"));
+            if (storedData && storedData.userName === formData.userName && storedData.userPassword === formData.userPassword) {
+                alert('User authenticated successfully');
+            } else {
+                setError('Invalid username or password');
+            }
         }
         setValidated(true);
     };
@@ -65,21 +68,6 @@ function SignupForm() {
                             Please enter your name.
                         </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group className="mb-3" style={{ width: "100%" }} controlId="formBasicEmail">
-                        <Form.Control
-                            type="email"
-                            name="userEmail"
-                            value={formData.userEmail}
-                            onChange={handleChange}
-                            style={{ width: "100%" }}
-                            placeholder="Enter Email"
-                            className='signupInputs'
-                            required
-                        />
-                        <Form.Control.Feedback type="invalid">
-                            Please enter a valid email.
-                        </Form.Control.Feedback>
-                    </Form.Group>
                     <Form.Group className="mb-3" style={{ width: "100%" }} controlId="formBasicPassword">
                         <InputGroup>
                             <Form.Control
@@ -101,11 +89,11 @@ function SignupForm() {
                             </Form.Control.Feedback>
                         </InputGroup>
                     </Form.Group>
-                    <Button variant="primary " type="submit" className='signupBtn'>
+                    <Button variant="primary" type="submit" className='signupBtn'>
                         Submit
                     </Button>
                 </Form>
-                    <button className='linkBtn' onClick={navigateToSignin}>Already have an account? Signin </button>
+                <button className='linkBtn' onClick={navigateToSignup}>Not have an account? Signup </button>
             </div>
         </div>
     );

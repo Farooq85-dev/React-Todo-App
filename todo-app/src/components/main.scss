@@ -13,8 +13,10 @@ $topIconsHeight: 200px;
 $iconsBorderColor: #274546;
 $btnBg: #274546;
 $btnBgHover: #1e3435;
-$btnPadding: 10px 15px;
+$btnPadding: 5px 10px;
 $btnBorder: none;
+$btnBorderRadius: 10px;
+$btnTextColor: white;
 
 @mixin flexBoxStyling() {
     display: flex;
@@ -36,9 +38,13 @@ $btnBorder: none;
     padding: $inputPaadding;
 }
 
-@mixin signupBtnStyling() {
+@mixin signupBtnStyling($btnBottomMargin: 0px) {
     background-color: $btnBg;
-    border: none;
+    border: $btnBorder;
+    padding: $btnPadding;
+    border-radius: $btnBorderRadius;
+    color: $btnTextColor;
+    margin-bottom: $btnBottomMargin;
 }
 
 .MainFormDiv {
@@ -65,6 +71,14 @@ $btnBorder: none;
         }
 
         .signupBtn {
+            @include signupBtnStyling(10px);
+
+            &:hover {
+                background-color: $btnBgHover;
+            }
+        }
+
+        .linkBtn {
             @include signupBtnStyling();
 
             &:hover {
